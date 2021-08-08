@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Sort Visualizer</title>
+    <link type="text/css" rel="stylesheet" href="./style.css"></link>
+</head>
+<body>
+    <div class="content">
+        <nav>
+            <h1>Simple Sort Visualizer</h1>
+            <button type="submit">Dark Mode</button>
+        </nav>
+        <div >
+            <div class="mainContent">
+                <div class="configure">
+                    <form >
+                        <div class="formEle1">
+                            <div class="eachEle">
+                            <label for="noOfBox">Enter number of boxes: </label>
+                            <input id="noOfBox" required type="number" min="5" max="1000"/>
+                            <button id="submitBtn" type="submit">Submit</button>
+                            </div>
+                            <div class="eachEle">
+                                <label for="speedLevel">Speed</label>
+                                <select id="speedLevel">
+                                    <option value="1" >1</option>
+                                    <option value="2" >2</option>
+                                    <option value="3" >3</option>
+                                    <option value="4" >4</option>
+                                    <option value="5" selected>5</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="eachEle">
+                            <div class="formEle2">
+                            <button type="button" id="start">Start</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="displayScreen">
+                        
+                </div>
+            </div>
+        </div>
+        <div class="written-section">
+
+        </div>
+    </div>
+    <script src="./app.js"></script>
+</body>
+</html>
+
+<!---
+<div class="box" style="height: 99%; width: 8%;"></div>
+                        <div class="box" style="height: 25%; width: 8%;"></div>
+                        <div class="box" style="height: 45%; width: 8%;"></div>
+                        <div class="box" style="height: 34%; width: 8%;"></div>
+                        <div class="box" style="height: 80%; width: 8%;"></div>
+                        <div class="box" style="height: 16%; width: 8%;"></div>
+                        <div class="box" style="height: 20%; width: 8%;"></div>
+                        <div class="box" style="height: 67%; width: 8%;"></div>
+                        <div class="box" style="height: 89%; width: 8%;"></div>
+                        <div class="box" style="height: 4%; width: 8%;"></div>
+-->
