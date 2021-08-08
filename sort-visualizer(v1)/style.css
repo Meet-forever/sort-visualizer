@@ -6,18 +6,21 @@
 body{
     background-color: rgb(40, 40, 40);
 }
-nav{
+.nav{
     position: fixed;
     background-color: rgb(27, 27, 27);
     height: 10vh;
-    width: 94vw;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: '100%';
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
     align-items: center;
-    padding: 0px 40px;
     z-index: 4;
+    padding: 0px 50px;
 }
-nav h1{
+.nav h1{
     color: white;
 }
 .mainContent{

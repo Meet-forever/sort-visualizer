@@ -9,10 +9,10 @@
 </head>
 <body>
     <div class="content">
-        <nav>
-            <h1>Simple Sort Visualizer</h1>
-            <button type="submit">Dark Mode</button>
-        </nav>
+        <div class="nav">
+                <h1>Simple Sort Visualizer</h1>
+                <button type="submit">Dark Mode</button>
+        </div>
         <div >
             <div class="mainContent">
                 <div class="configure">
@@ -26,17 +26,15 @@
                             <div class="eachEle">
                                 <label for="speedLevel">Speed</label>
                                 <select id="speedLevel">
-                                    <option value="1" >1</option>
-                                    <option value="2" >2</option>
-                                    <option value="3" >3</option>
-                                    <option value="4" >4</option>
-                                    <option value="5" selected>5</option>
+                                    <option id="fast" value="fast" selected>fast</option>
+                                    <option id="slow" value="slow" >slow</option>
                                 </select>
                             </div>
                         </div>
                         <div class="eachEle">
                             <div class="formEle2">
-                            <button type="button" id="start">Start</button>
+                                <button type="button" id="start">Start</button>
+                                <button type="button" id="stop">Stop</button>
                             </div>
                         </div>
                     </form>

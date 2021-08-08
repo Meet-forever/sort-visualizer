@@ -1,12 +1,13 @@
 let displayScreen = document.getElementById('displayScreen');
 let startBtn = document.getElementById('start');
 let submitBtn = document.getElementById('submitBtn');
-let shuffleBtn = document.getElementById('shuffle');
-
-
+let stopBtn = document.getElementById('stop');
+let pressedStop = false;
+let shuffled = false;
 
 //----------------------------------Event Listners
 
+// Reminder: add disable for button in submit button
 //On submit grab the input value
 // displayScreen.innerHTML = ''; will empty box and generate new boxes
 submitBtn.addEventListener('click', (e)=>{
@@ -14,28 +15,57 @@ submitBtn.addEventListener('click', (e)=>{
     if(n_run <5 || n_run>1000) return;
     e.preventDefault();
     displayScreen.innerHTML = ''
-    runNTimes(n_run);   
+    runNTimes(n_run);
+    shuffled = true;   
 })
 
-startBtn.addEventListener('click', (e)=>{
+//On start disable all buttons and enjoy lol
+startBtn.addEventListener('click', async (e)=>{
     e.preventDefault();
+    if(!shuffled) return;
+    submitBtn.disabled  = true;
+    startBtn.disabled = true;
     let n_run = document.getElementById('noOfBox').value;
     let boxes = document.getElementsByClassName('box');
     let j;
     let i;
+    let speed = 1000;
+    if(!document.getElementById('fast').selected){
+        speed = 2000;
+    } 
+    console.log(speed);
     for(i = 0 ; i < n_run; i++){
-        for(j = 0 ; j < n_run + 1-i ; j++){
+        for(j = 0 ; j < n_run-1-i ; j++){
+            if(pressedStop) {
+                submitBtn.disabled  = false;
+                startBtn.disabled = false;
+                shuffled = false;
+                pressedStop = false;
+                return;
+            }
+            boxes[j].style.backgroundImage = "linear-gradient(70deg, lightblue, cyan)";
+            await waitTill(1000/n_run);
             let jheight = parseFloat(boxes[j].style.height);
             let j1height = parseFloat(boxes[j+1].style.height);
             if(jheight > j1height){
                 let temp = jheight;
                 jheight = j1height;
                 j1height = temp;
-                boxes[j].style.width = jheight+"%";
-                boxes[j+1].style.width = j1height+"%";
+                boxes[j].style.height = jheight+"%";
+                boxes[j+1].style.height = j1height+"%";      
             }
+           boxes[j].style.backgroundImage = "linear-gradient(70deg, rgb(34, 34, 34), lightgrey)"; 
         }
     }
+    submitBtn.disabled  = false;
+    startBtn.disabled = false;
+    shuffled = false;
+})
+
+//on stop exit whole function;
+stopBtn.addEventListener('click', ()=>{
+    pressedStop = true;
+
 })
 
 
@@ -66,3 +96,39 @@ async function waitTill(ms){
         setTimeout(()=>res(''), ms);
     })
 }
+
+/* Error Zone = number of error I made in code haha...
+
+ // let eleWidthi = choosonOne[0].style.width;
+    // let eleWidthj = choosonOne[1].style.width;
+    
+    // let widthi = parseInt(eleWidthi);
+    // console.log(eleWidthi)
+    // eleWidthj = eleWidthi  
+
+
+    // intervalj = setInterval(function(){
+    //     if(i>10-1){
+    //         clearInterval(intervalj);
+    //     }
+    //     intervalj1 = setInterval(() => {
+    //         if(j> 10-i-1){
+    //             clearInterval(intervalj1);
+    //         }
+    //             let eleWidthj = choosonOne[j].style.width;
+    //             console.log(eleWidthj);
+    //             let widthj = parseInt(eleWidthj)
+    //             let widthj1 = parseInt(choosonOne[j+1].style.width)
+    //         if(widthj > widthj1){
+    //             let temp = choosonOne[(j+1)].style.width;
+    //             choosonOne[(j+1)].style.width = eleWidthj;
+    //             choosonOne[j].style.width = temp;
+    //         }
+    //         console.log("j is running")
+    //         j++;
+    //     },1000)
+    //     console.log("i is running");
+    //     i++;
+    // },1000);
+
+*/
