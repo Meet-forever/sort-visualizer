@@ -8,7 +8,7 @@ let shuffled = false;
 //----------------------------------Event Listners
 
 // Reminder: add disable for button in submit button
-//On submit grab the input value
+// On submit grab the input value
 // displayScreen.innerHTML = ''; will empty box and generate new boxes
 submitBtn.addEventListener('click', (e)=>{
     let n_run = document.getElementById('noOfBox').value;
