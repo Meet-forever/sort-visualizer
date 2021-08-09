@@ -1,52 +1,53 @@
 let displayScreen = document.getElementById('displayScreen');
 let startBtn = document.getElementById('start');
 let submitBtn = document.getElementById('submitBtn');
-let stopBtn = document.getElementById('stop');
-let pressedStop = false;
-let shuffled = false;
-
+let alredyClicked = false;
+let solved = false;
 //----------------------------------Event Listners
 
 // Reminder: add disable for button in submit button
 // On submit grab the input value
 // displayScreen.innerHTML = ''; will empty box and generate new boxes
-submitBtn.addEventListener('click', (e)=>{
-    let n_run = document.getElementById('noOfBox').value;
-    if(n_run <5 || n_run>1000) return;
-    e.preventDefault();
-    displayScreen.innerHTML = ''
-    runNTimes(n_run);
-    shuffled = true;   
-})
+submitBtn.addEventListener('click', startTheProcess)
 
 //On start disable all buttons and enjoy lol
 startBtn.addEventListener('click', async (e)=>{
+    if(alredyClicked){
+        startTheProcess(e);
+        document.getElementById('startIcon').innerHTML = 'play_arrow'
+        alredyClicked = false;
+        return;
+    }
     e.preventDefault();
-    if(!shuffled) return;
-    submitBtn.disabled  = true;
-    startBtn.disabled = true;
+    if(solved){
+        e.preventDefault();
+        document.getElementById('prompt').innerHTML = "It's alredy sorted 😅";   
+        return;
+    }
+    alredyClicked = true;
+    document.getElementById('startIcon').innerHTML = 'stop'
     let n_run = document.getElementById('noOfBox').value;
     let boxes = document.getElementsByClassName('box');
-    let j;
-    let i;
     let speed = 1000;
     if(!document.getElementById('fast').selected){
-        speed = 2000;
-    } 
-    console.log(speed);
+        speed = 4000;
+    }
+    if(n_run>100 && speed === 4000){
+        document.getElementById('prompt').innerHTML = "It will be very slow 😬";
+    }
+    submitBtn.disabled = true;
+    let j;
+    let i;
+   
+    try{
     for(i = 0 ; i < n_run; i++){
         for(j = 0 ; j < n_run-1-i ; j++){
-            if(pressedStop) {
-                submitBtn.disabled  = false;
-                startBtn.disabled = false;
-                shuffled = false;
-                pressedStop = false;
-                return;
-            }
-            boxes[j].style.backgroundImage = "linear-gradient(70deg, lightblue, cyan)";
-            await waitTill(1000/n_run);
+            boxes[j].style.backgroundImage = "linear-gradient(70deg, blue, violet)";
+            boxes[j+1].style.backgroundImage = "linear-gradient(70deg, blue, cyan)"
+            await waitTill(speed/n_run);
             let jheight = parseFloat(boxes[j].style.height);
             let j1height = parseFloat(boxes[j+1].style.height);
+            if(!alredyClicked)return;
             if(jheight > j1height){
                 let temp = jheight;
                 jheight = j1height;
@@ -54,29 +55,42 @@ startBtn.addEventListener('click', async (e)=>{
                 boxes[j].style.height = jheight+"%";
                 boxes[j+1].style.height = j1height+"%";      
             }
-           boxes[j].style.backgroundImage = "linear-gradient(70deg, rgb(34, 34, 34), lightgrey)"; 
+            boxes[j].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)"; 
+            boxes[j+1].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)"; 
         }
     }
-    submitBtn.disabled  = false;
+    solved = true;
+    if(n_run>100 && speed === 4000){
+        document.getElementById('prompt').innerHTML = "🥵 Welp it was painful";
+    }
+}catch(e){
+
+}
+finally{
+    document.getElementById('startIcon').innerHTML = 'play_arrow'
+    alredyClicked = false;
     startBtn.disabled = false;
-    shuffled = false;
+    submitBtn.disabled = false;
+}
 })
-
-//on stop exit whole function;
-stopBtn.addEventListener('click', ()=>{
-    pressedStop = true;
-
-})
-
 
 //-----------------------------------Functions:
-//Run n times
-async function runNTimes(n_time){
-    for(let i = 0 ; i< n_time; i++){
-        await waitTill(5);
-        generateElement(n_time)
+
+//
+function startTheProcess(e){
+    let n_run = document.getElementById('noOfBox').value;
+    if(n_run <5 || n_run>1000) return;
+    startBtn.disabled = true
+    document.getElementById('prompt').innerHTML = ""
+    e.preventDefault();
+    displayScreen.innerHTML = ''
+    for(let i = 0 ; i< n_run; i++){
+        generateElement(n_run)
     }
+    startBtn.disabled = false
+    solved = false;
 }
+
 
 
 // generate single random box
@@ -130,5 +144,29 @@ async function waitTill(ms){
     //     console.log("i is running");
     //     i++;
     // },1000);
+
+    //let pressedStop = false;
+    //let shuffled = false;
+    //stopBtn.disabled = true;
+    
+    // startBtn.disabled = false;
+    // stopBtn.disabled = true;
+    // submitBtn.disabled = false;
+    // shuffled = true;
+
+    //if(!shuffled) return;
+    // submitBtn.disabled  = true;
+    // startBtn.disabled = true;
+    // stopBtn.disabled = false;
+
+    //on stop exit whole function;
+    // stopBtn.addEventListener('click', (e)=>{
+    //     pressedStop = true;
+    //     startTheProcess(e);
+    //     submitBtn.disabled  = false;
+    //     startBtn.disabled = false;
+    //     pressedStop = false;
+    //     shuffled = true;
+    // })
 
 */

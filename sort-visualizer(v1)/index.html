@@ -6,43 +6,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Sort Visualizer</title>
     <link type="text/css" rel="stylesheet" href="./style.css"></link>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 </head>
 <body>
     <div class="content">
         <div class="nav">
-                <h1>Simple Sort Visualizer</h1>
+                <h1>Sort</h1>
                 <button type="submit">Dark Mode</button>
         </div>
         <div >
             <div class="mainContent">
+                
                 <div class="configure">
+                    
                     <form >
                         <div class="formEle1">
-                            <div class="eachEle">
-                            <label for="noOfBox">Enter number of boxes: </label>
-                            <input id="noOfBox" required type="number" min="5" max="1000"/>
-                            <button id="submitBtn" type="submit">Submit</button>
-                            </div>
-                            <div class="eachEle">
+                            
+
+                                <div>
+                                <label for="noOfBox">Boxes: </label>
+                                <input id="noOfBox" value="10" required type="number" min="5" max="1000"/>
+                                <button id="submitBtn">Submit</button>
+                                </div>
+                            
+                                <div>
                                 <label for="speedLevel">Speed</label>
                                 <select id="speedLevel">
                                     <option id="fast" value="fast" selected>fast</option>
                                     <option id="slow" value="slow" >slow</option>
                                 </select>
-                            </div>
-                        </div>
-                        <div class="eachEle">
-                            <div class="formEle2">
-                                <button type="button" id="start">Start</button>
-                                <button type="button" id="stop">Stop</button>
-                            </div>
+                                </div>
+                                
+                                <div>
+                                    <button id="start"><i class="material-icons" id='startIcon'>
+                                        play_arrow
+                                    </i></button>
+                                </div>
                         </div>
                     </form>
+                    
                 </div>
+                <div id="sortType"><h1>Bubble Sort</h1></div>
+                <span id="prompt"></span>
                 <div id="displayScreen">
-                        
+                    <div class="box" style="height: 99%; width: 8%;"></div>
+                    <div class="box" style="height: 25%; width: 8%;"></div>
+                    <div class="box" style="height: 45%; width: 8%;"></div>
+                    <div class="box" style="height: 34%; width: 8%;"></div>
+                    <div class="box" style="height: 80%; width: 8%;"></div>
+                    <div class="box" style="height: 16%; width: 8%;"></div>
+                    <div class="box" style="height: 20%; width: 8%;"></div>
+                    <div class="box" style="height: 67%; width: 8%;"></div>
+                    <div class="box" style="height: 89%; width: 8%;"></div>
+                    <div class="box" style="height: 4%; width: 8%;"></div>
                 </div>
             </div>
+            <div class="backimg"></div>
         </div>
         <div class="written-section">
 
@@ -53,14 +73,4 @@
 </html>
 
 <!---
-<div class="box" style="height: 99%; width: 8%;"></div>
-                        <div class="box" style="height: 25%; width: 8%;"></div>
-                        <div class="box" style="height: 45%; width: 8%;"></div>
-                        <div class="box" style="height: 34%; width: 8%;"></div>
-                        <div class="box" style="height: 80%; width: 8%;"></div>
-                        <div class="box" style="height: 16%; width: 8%;"></div>
-                        <div class="box" style="height: 20%; width: 8%;"></div>
-                        <div class="box" style="height: 67%; width: 8%;"></div>
-                        <div class="box" style="height: 89%; width: 8%;"></div>
-                        <div class="box" style="height: 4%; width: 8%;"></div>
 -->
