@@ -13,41 +13,31 @@
     <div class="content">
         <div class="nav">
                 <h1>Sort</h1>
-                <button type="submit">Dark Mode</button>
+                <div>
+                <form>
+                    <label for="noOfBox">Boxes: </label>
+                    <input id="noOfBox" value="10" required type="number" min="5" max="1000"/>
+                    <button id="submitBtn">submit</button>
+                </form>
+                </div>
+                <button type="submit"><i class="material-icons">
+                    dark_mode
+                    </i></button>
         </div>
         <div >
             <div class="mainContent">
+                <div id="sortType"><h2>Bubble Sort</h2></div>
                 
-                <div class="configure">
-                    
-                    <form >
-                        <div class="formEle1">
-                            
-
-                                <div>
-                                <label for="noOfBox">Boxes: </label>
-                                <input id="noOfBox" value="10" required type="number" min="5" max="1000"/>
-                                <button id="submitBtn">Submit</button>
-                                </div>
-                            
-                                <div>
-                                <label for="speedLevel">Speed</label>
-                                <select id="speedLevel">
-                                    <option id="fast" value="fast" selected>fast</option>
-                                    <option id="slow" value="slow" >slow</option>
-                                </select>
-                                </div>
-                                
-                                <div>
-                                    <button id="start"><i class="material-icons" id='startIcon'>
-                                        play_arrow
-                                    </i></button>
-                                </div>
-                        </div>
-                    </form>
-                    
-                </div>
-                <div id="sortType"><h1>Bubble Sort</h1></div>
+                <label for="speedLevel">Speed</label>
+                <select id="speedLevel">
+                        <option id="fast" value="fast" selected>fast</option>
+                        <option id="slow" value="slow" >slow</option>
+                </select>
+                
+                <button id="start"><i class="material-icons" id='startIcon'>
+                    play_arrow
+                </i></button>
+                
                 <span id="prompt"></span>
                 <div id="displayScreen">
                     <div class="box" style="height: 99%; width: 8%;"></div>
