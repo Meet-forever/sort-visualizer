@@ -67,6 +67,7 @@ form{
 #sortType h2{
     font-family: sans-serif;
     font-weight: 600;
+    font-size: clamp(18px, 8vw, 32px)
 }
 #prompt{
     position: absolute;

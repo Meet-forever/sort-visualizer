@@ -44,16 +44,19 @@ startBtn.addEventListener('click', async (e)=>{
         for(j = 0 ; j < n_run-1-i ; j++){
             boxes[j].style.backgroundImage = "linear-gradient(70deg, blue, violet)";
             boxes[j+1].style.backgroundImage = "linear-gradient(70deg, blue, cyan)"
-            await waitTill(speed/n_run);
             let jheight = parseFloat(boxes[j].style.height);
             let j1height = parseFloat(boxes[j+1].style.height);
+            await waitTill(speed/n_run);
             if(!alredyClicked)return;
             if(jheight > j1height){
                 let temp = jheight;
                 jheight = j1height;
                 j1height = temp;
                 boxes[j].style.height = jheight+"%";
-                boxes[j+1].style.height = j1height+"%";      
+                boxes[j+1].style.height = j1height+"%";
+                boxes[j].style.backgroundImage = "linear-gradient(70deg, blue, cyan)";
+                boxes[j+1].style.backgroundImage = "linear-gradient(70deg, blue, violet)";      
+                await waitTill(speed/n_run);
             }
             boxes[j].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)"; 
             boxes[j+1].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)"; 
@@ -67,6 +70,8 @@ startBtn.addEventListener('click', async (e)=>{
 
 }
 finally{
+    boxes[j].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)"; 
+    boxes[j+1].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)";
     document.getElementById('startIcon').innerHTML = 'play_arrow'
     alredyClicked = false;
     startBtn.disabled = false;
