@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <div>SORT FIGHT</div>
+    </nav>  
+    <div id="mainContentWrapper">
+        <div class="emptynavspace"></div>
+        <div id="config">
+                <form>
+                    <label for="inputText">Boxes</label>
+                    <input id="inputText" type="number" min="10" max="2000" />
+                    <button id="submitBtn" type="submit">Submit</button>
+                </form>
+                <button type="button">Start</button>
+                <div >
+                    <select value="box1option">
+                        <option>Bubble Sort</option>
+                        <option>Insertion Sort</option>
+                    </select>
+                    <select value="box2option">
+                        <option>Bubble Sort</option>
+                        <option>Insertion Sort</option>
+                    </select>
+                </div>
+        </div>
+       <div id="boxWrapper"> 
+            <div id="box1">
+
+            </div>
+            <div id="box2">
+
+            </div>
+        </div>
+    </div>
+    <script src="./app.js"></script>
+</body>
+</html>
