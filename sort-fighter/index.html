@@ -16,18 +16,20 @@
         <div id="config">
                 <form>
                     <label for="inputText">Boxes</label>
-                    <input id="inputText" type="number" min="10" max="2000" />
+                    <input id="inputText" type="number" min="10" max="400" />
                     <button id="submitBtn" type="submit">Submit</button>
                 </form>
-                <button type="button">Start</button>
+                <button type="button" id="startBtn">Start</button>
                 <div >
-                    <select value="box1option">
-                        <option>Bubble Sort</option>
-                        <option>Insertion Sort</option>
+                    <select name="sortTypes" id="option1" value="box1option">
+                        <option value="bubble">Bubble Sort</option>
+                        <option value="insertion">Insertion Sort</option>
+                        <option value="selection">Selection Sort</option>
                     </select>
-                    <select value="box2option">
-                        <option>Bubble Sort</option>
-                        <option>Insertion Sort</option>
+                    <select id="option2" name="sortTypes" value="box2option">
+                        <option value="bubble">Bubble Sort</option>
+                        <option value="insertion">Insertion Sort</option>
+                        <option value="selection">Selection Sort</option>
                     </select>
                 </div>
         </div>
