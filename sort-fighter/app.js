@@ -3,6 +3,7 @@ let box2 = document.getElementById('box2');
 let submit = document.getElementById('submitBtn');
 let start =  document.getElementById('startBtn');
 
+// Event Listeners-----------------------------------------
 submit.addEventListener('click', (e) => {
     let input = document.getElementById('inputText').value;
     if(input > 400 || input < 10) return;  
@@ -34,7 +35,10 @@ start.addEventListener('click', (e) => {
                         break;
     }
 })
+// Event Listener end--------------------------------------
 
+
+//Functions start -----------------------------------------
 function createBox(box1, box2, input){
     box1.innerHTML = "";
     box2.innerHTML = "";
@@ -133,3 +137,4 @@ async function waitForMe(ms){
         setTimeout(()=>res(''), ms)
     })
 }
+// Function end----------------------------------------
