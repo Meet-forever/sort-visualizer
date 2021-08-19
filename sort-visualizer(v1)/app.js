@@ -29,12 +29,8 @@ startBtn.addEventListener('click', async (e)=>{
     let n_run = document.getElementById('noOfBox').value;
     let boxes = document.getElementsByClassName('box');
     let speed = 1000;
-    if(!document.getElementById('fast').selected){
-        speed = 4000;
-    }
-    if(n_run>100 && speed === 4000){
-        document.getElementById('prompt').innerHTML = "It will be very slow 😬";
-    }
+    if(!document.getElementById('fast').selected) speed = 4000;
+    if(n_run>100 && speed === 4000) document.getElementById('prompt').innerHTML = "It will be very slow 😬";
     submitBtn.disabled = true;
     let j;
     let i;
@@ -56,18 +52,16 @@ startBtn.addEventListener('click', async (e)=>{
                 boxes[j+1].style.height = j1height+"%";
                 boxes[j].style.backgroundImage = "linear-gradient(70deg, blue, cyan)";
                 boxes[j+1].style.backgroundImage = "linear-gradient(70deg, blue, violet)";      
-                await waitTill(speed/n_run);
             }
             boxes[j].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)"; 
             boxes[j+1].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)"; 
         }
     }
     solved = true;
-    if(n_run>100 && speed === 4000){
-        document.getElementById('prompt').innerHTML = "🥵 Welp it was painful";
-    }
-}catch(e){
-
+    if(n_run>100 && speed === 4000) document.getElementById('prompt').innerHTML = "🥵 Welp it was painful";
+}
+catch(e){
+    
 }
 finally{
     boxes[j].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)"; 
