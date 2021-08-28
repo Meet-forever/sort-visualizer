@@ -26,7 +26,14 @@
         </div>
         <div >
             <div class="mainContent">
-                <div id="sortType"><h2>Bubble Sort</h2></div>
+                <div id="sortType">
+                    <select id="currentSortType" title="Sort Type" name="Sort Type">
+                        <option selected value="Bubble Sort" name="Bubble Sort">Bubble Sort</option>
+                        <option value="Selection Sort" name="Selection Sort">Selection Sort</option>
+                        <option value="Insertion Sort" name="Insertion Sort">Insertion Sort</option>
+                        <option value="Merge Sort" name="Merge Sort">Merge Sort</option>
+                    </select>
+                </div>
                 
                 <label for="speedLevel">Speed</label>
                 <select id="speedLevel">
@@ -40,16 +47,6 @@
                 
                 <span id="prompt"></span>
                 <div id="displayScreen">
-                    <div class="box" style="height: 99%; width: 8%;"></div>
-                    <div class="box" style="height: 25%; width: 8%;"></div>
-                    <div class="box" style="height: 45%; width: 8%;"></div>
-                    <div class="box" style="height: 34%; width: 8%;"></div>
-                    <div class="box" style="height: 80%; width: 8%;"></div>
-                    <div class="box" style="height: 16%; width: 8%;"></div>
-                    <div class="box" style="height: 20%; width: 8%;"></div>
-                    <div class="box" style="height: 67%; width: 8%;"></div>
-                    <div class="box" style="height: 89%; width: 8%;"></div>
-                    <div class="box" style="height: 4%; width: 8%;"></div>
                 </div>
             </div>
             <div class="backimg"></div>
