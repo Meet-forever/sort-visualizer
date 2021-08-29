@@ -1,7 +1,7 @@
 let displayScreen = document.getElementById("displayScreen");
 let startBtn = document.getElementById("start");
 let submitBtn = document.getElementById("submitBtn");
-let alredyClicked = false;
+let alreadyClicked = false;
 let solved = false;
 let promptThis = document.getElementById("prompt");
 //----------------------------------Event Listners
@@ -29,7 +29,7 @@ startBtn.addEventListener("click", async (e) => {
   }
   TurnOn();
   let boxLen = document.getElementById("noOfBox").value;
-  let speed = 700;
+  let speed = 900;
   if (!document.getElementById("fast").selected) speed = 6000;
   if (boxLen > 100 && speed === 6000) {
     TurnOff();
@@ -49,6 +49,7 @@ startBtn.addEventListener("click", async (e) => {
       break;
     case currentSortHeader === "Merge Sort":
       await MergeSort(boxes,0, boxLen-1, (speed/boxLen), e);
+      solved = true;
       break;
   }
   TurnOff();
@@ -60,17 +61,18 @@ startBtn.addEventListener("click", async (e) => {
 function TurnOn() {
   promptThis.innerText = "";
   submitBtn.disabled = true;
-  alredyClicked = true;
+  alreadyClicked = true;
   document.getElementById("startIcon").innerHTML = "stop";
 }
 //Turn off all this after sorting
 function TurnOff() {
   submitBtn.disabled = false;
-  alredyClicked = false;
+  alreadyClicked = false;
+  solved = false
   document.getElementById("startIcon").innerHTML = "play_arrow";
 }
 function check() {
-  if (alredyClicked) {
+  if (alreadyClicked) {
     TurnOff();
     return true;
   } else {
@@ -85,8 +87,8 @@ async function BubbleSort(boxes, boxLen, speed) {
     for (j = 0; j < boxLen- 1 - i; j++) {
     boxes[j].style.backgroundImage = "linear-gradient(70deg, blue, violet)";
     boxes[j+1].style.backgroundImage = "linear-gradient(70deg, blue, cyan)";
-      await waitTill(speed/boxLen);
-      if(!alredyClicked){
+      await waitTill(speed);
+      if(!alreadyClicked){
         boxes[j].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)"; 
         boxes[j+1].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)";
         promptThis.innerHTML = "";
@@ -102,7 +104,7 @@ async function BubbleSort(boxes, boxLen, speed) {
         boxes[j + 1].style.height = temp;
         boxes[j].style.backgroundImage = "linear-gradient(70deg, blue, cyan)";
         boxes[j+1].style.backgroundImage = "linear-gradient(70deg, blue, violet)"; 
-        await waitTill(speed/boxLen);
+        await waitTill(speed);
       }
         boxes[j].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)"; 
         boxes[j+1].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)";
@@ -117,7 +119,7 @@ async function SelectionSort(boxes, boxLen, speed) {
     let min_index = i;
     await waitTill(speed)
     for(j = i+1 ; j < boxLen; j++){
-      if(!alredyClicked){
+      if(!alreadyClicked){
         promptThis.innerHTML = "";
         solved = false;
         return;
@@ -145,11 +147,6 @@ async function InsertionSort(boxes, boxLen, speed) {
     let temp = boxes[i].style.height;
     await waitTill(speed);
     while(j >= 0 && parseFloat(temp) < parseFloat(boxes[j].style.height)){
-      if(!alredyClicked){
-        promptThis.innerHTML = "";
-        solved = false;
-        return;
-      }
       boxes[i].style.backgroundImage = "linear-gradient(70deg, red, tomato)";
       boxes[j].style.backgroundImage = "linear-gradient(70deg, blue, cyan)";
       boxes[j+1].style.backgroundimage = "linear-gradient(70deg, blue, violet)";
@@ -162,7 +159,6 @@ async function InsertionSort(boxes, boxLen, speed) {
     boxes[i].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)";
     boxes[j+1].style.height = temp;
   }
-  solved = true;
 }
 //Merge Sort
 async function MergeSort(boxes,left, right, speed, e) {
@@ -172,6 +168,10 @@ async function MergeSort(boxes,left, right, speed, e) {
     await MergeSort(boxes, left, midPoint, speed, e);
     await MergeSort(boxes, midPoint+1, right, speed, e);
     await merge(boxes, left, midPoint, right, speed, e);
+  }
+  if(!alreadyClicked){
+    solved = false;
+    return;
   }
 
 }
@@ -192,7 +192,7 @@ for(let j = 0 ; j < rightArrayLength ; j++){
 let i= 0, j = 0, k = left;
 while(i < leftArrayLength && j < rightArrayLength){
   boxes[k].style.backgroundImage ="linear-gradient(70deg, blue, cyan)" ;
-  if(!alredyClicked){
+  if(!alreadyClicked){
     promptThis.innerHTML = "";
     solved = false;
     boxes[k].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)";

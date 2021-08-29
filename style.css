@@ -122,4 +122,44 @@ form{
     height: 100vh;
     background-color: rgb(34, 34, 34);
     z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.written-content{
+    max-width: 1000px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#written-heading{
+    color: white;
+}
+.information-manager{
+    display: flex;
+    flex-wrap: wrap;
+}
+#paragraph-content{
+    max-width: 600px;
+    margin: 10px;
+    color: white;
+}
+#complexity-table{
+    max-width: 400;
+    margin: 10px;
+}
+table, th, td{
+    border: 1px solid white;
+    color: white
+}
+td{
+    padding: 5px;
+}
+#imageHandler{
+    margin-top: 20px;
+    max-width: 300px;
+    /* background-image: url("https://res.cloudinary.com/practicaldev/image/fetch/s--C0CI1OCj--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/ubhywp9xh8zk6on4caql.gif"); */
+    object-fit: cover;
 }

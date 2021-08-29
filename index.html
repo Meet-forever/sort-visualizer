@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Sort Visualizer</title>
-    <link type="text/css" rel="stylesheet" href="./style.css"></link>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="./style.css">
+    </link>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+
 <body>
     <div class="content">
         <div class="nav">
-                <h1>Sort</h1>
-                <div>
+            <h1>Sort</h1>
+            <div>
                 <form>
                     <label for="noOfBox">Boxes: </label>
-                    <input id="noOfBox" value="10" required type="number" min="5" max="1000"/>
+                    <input id="noOfBox" value="10" required type="number" min="5" max="1000" />
                     <button id="submitBtn">submit</button>
                 </form>
-                </div>
-                <button type="submit"><i class="material-icons">
+            </div>
+            <button type="submit"><i class="material-icons">
                     dark_mode
-                    </i></button>
+                </i></button>
         </div>
-        <div >
+        <div>
             <div class="mainContent">
                 <div id="sortType">
                     <select id="currentSortType" title="Sort Type" name="Sort Type">
@@ -34,17 +36,17 @@
                         <option value="Merge Sort" name="Merge Sort">Merge Sort</option>
                     </select>
                 </div>
-                
+
                 <label for="speedLevel">Speed</label>
                 <select id="speedLevel">
-                        <option id="fast" value="fast" selected>fast</option>
-                        <option id="slow" value="slow" >slow</option>
+                    <option id="fast" value="fast" selected>fast</option>
+                    <option id="slow" value="slow">slow</option>
                 </select>
-                
+
                 <button id="start"><i class="material-icons" id='startIcon'>
-                    play_arrow
-                </i></button>
-                
+                        play_arrow
+                    </i></button>
+
                 <span id="prompt"></span>
                 <div id="displayScreen">
                 </div>
@@ -52,11 +54,35 @@
             <div class="backimg"></div>
         </div>
         <div class="written-section">
-
+            <div class="written-content">
+                <h1 id="written-heading">
+                    Bubble Sort
+                </h1>
+                <div class="information-manager">
+                    <p id="paragraph-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur nulla quas quidem
+                        necessitatibus, praesentium dignissimos? Debitis nihil voluptatum eius laboriosam provident
+                        impedit corporis deserunt sint nemo architecto facere dignissimos eveniet maiores dicta, culpa
+                        ratione ex! Esse soluta nostrum vitae, sint ullam recusandae sequi? Perferendis debitis
+                        reprehenderit laboriosam deserunt quae delectus.</p>
+                    <table id="complexity-table">
+                        <tr>
+                            <th>Cases</th>
+                            <th>Complexity</th>
+                        </tr>
+                        <tr>
+                            <td>worst-case</td>
+                            <td>O(n<sup>2</sup>)</td>
+                        </tr>
+                    </table>
+                </div>
+                <div ></div>
+                <img id="imageHandler" src="https://res.cloudinary.com/practicaldev/image/fetch/s--C0CI1OCj--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/ubhywp9xh8zk6on4caql.gif">
+            </div>
         </div>
     </div>
     <script src="./app.js"></script>
 </body>
+
 </html>
 
 <!---
