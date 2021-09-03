@@ -4,7 +4,16 @@ let submitBtn = document.getElementById("submitBtn");
 let alreadyClicked = false;
 let solved = false;
 let promptThis = document.getElementById("prompt");
+let countthis = 0; // It's whole exsistence is to count merge sort's recursion to check if the boxes are sorted or not
+let sortHeading = document.getElementById('written-heading');
+let sortDetail = document.getElementById('paragraph-content');
+let worstCase = document.getElementById('worst-case');
+let bestCase = document.getElementById('best-case');
+let averageCase = document.getElementById('average-case');
+let selectedSort = document.getElementById('currentSortType')
+let imageHandler = document.getElementById('imageHandler')
 //----------------------------------Event Listners
+
 
 //on page load it will create 10 boxes
 window.addEventListener('load', ()=>{
@@ -16,6 +25,23 @@ window.addEventListener('load', ()=>{
 //Starting process will execute and it will create new boxes based on user need
 submitBtn.addEventListener("click", startTheProcess);
 
+function changeThisWholeThing(){
+  let sortCurrentValue = selectedSort.value;  
+  switch(true){
+    case  sortCurrentValue === 'Bubble Sort':
+      changeBubbleContent();
+      break;
+    case sortCurrentValue === 'Selection Sort':
+      changeSelectionContent();
+      break;
+    case sortCurrentValue === 'Insertion Sort':
+      changeInsertionContent();
+      break;
+    case sortCurrentValue === 'Merge Sort':
+      changeMergeContent();
+      break;
+  }
+}
 
 //On start disable all buttons and enjoy lol
 startBtn.addEventListener("click", async (e) => {
@@ -29,31 +55,33 @@ startBtn.addEventListener("click", async (e) => {
   }
   TurnOn();
   let boxLen = document.getElementById("noOfBox").value;
-  let speed = 900;
-  if (!document.getElementById("fast").selected) speed = 6000;
-  if (boxLen > 100 && speed === 6000) {
-    TurnOff();
-    return;
-  }
   let boxes = document.getElementsByClassName("box");
-  let currentSortHeader = document.getElementById("currentSortType").value;
+  let currentSortHeader = selectedSort.value;
   switch (true) {
     case currentSortHeader === "Bubble Sort":
-      await BubbleSort(boxes, boxLen, (speed/boxLen));
+      await BubbleSort(boxes, boxLen);
+      changeBubbleContent();
       break;
     case currentSortHeader === "Selection Sort":
-      await SelectionSort(boxes, boxLen, (speed/boxLen));
+      await SelectionSort(boxes, boxLen);
+      changeSelectionContent();
       break;
     case currentSortHeader === "Insertion Sort":
-      await InsertionSort(boxes, boxLen, (speed/boxLen));
+      await InsertionSort(boxes, boxLen);
+      changeInsertionContent();
       break;
     case currentSortHeader === "Merge Sort":
-      await MergeSort(boxes,0, boxLen-1, (speed/boxLen), e);
-      solved = true;
+      await MergeSort(boxes,0, boxLen-1, e);
+      changeMergeContent();
+      if(countthis === 0) solved = true;
+      else countthis = 0;
       break;
   }
   TurnOff();
 });
+
+// Change content
+
 
 //-----------------------------------Functions:
 
@@ -68,7 +96,6 @@ function TurnOn() {
 function TurnOff() {
   submitBtn.disabled = false;
   alreadyClicked = false;
-  solved = false
   document.getElementById("startIcon").innerHTML = "play_arrow";
 }
 function check() {
@@ -80,14 +107,16 @@ function check() {
   }
 }
 
+// ------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
 //Bubble Sort()
-async function BubbleSort(boxes, boxLen, speed) {
+async function BubbleSort(boxes, boxLen) {
   let i, j;
   for (i = 0; i < boxLen; i++) {
     for (j = 0; j < boxLen- 1 - i; j++) {
     boxes[j].style.backgroundImage = "linear-gradient(70deg, blue, violet)";
     boxes[j+1].style.backgroundImage = "linear-gradient(70deg, blue, cyan)";
-      await waitTill(speed);
+      await waitTill(document.getElementById('speedLevel').value);
       if(!alreadyClicked){
         boxes[j].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)"; 
         boxes[j+1].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)";
@@ -104,7 +133,7 @@ async function BubbleSort(boxes, boxLen, speed) {
         boxes[j + 1].style.height = temp;
         boxes[j].style.backgroundImage = "linear-gradient(70deg, blue, cyan)";
         boxes[j+1].style.backgroundImage = "linear-gradient(70deg, blue, violet)"; 
-        await waitTill(speed);
+        await waitTill(document.getElementById('speedLevel').value);
       }
         boxes[j].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)"; 
         boxes[j+1].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)";
@@ -112,12 +141,29 @@ async function BubbleSort(boxes, boxLen, speed) {
   }
   solved = true;
 }
+
+function changeBubbleContent(){
+  sortHeading.innerText = 'Bubble Sort';
+  sortDetail.innerHTML = `Bubble sort, sometimes referred to as sinking sort, is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. The algorithm, which is a comparison sort, is named for the way smaller or larger elements "bubble" to the top of the list.
+  <br/><br/> This simple algorithm performs poorly in real world use and is used primarily as an educational tool. More efficient algorithms such as quicksort, timsort, or merge sort are used by the sorting libraries built into popular programming languages such as Python and Java.`;
+  worstCase.innerHTML = `O(n<sup>2</sup>)`;
+  averageCase.innerHTML = `O(n<sup>2</sup>)`;
+  bestCase.innerHTML = `O(n)`;
+  imageHandler.src = 'https://res.cloudinary.com/practicaldev/image/fetch/s--C0CI1OCj--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/ubhywp9xh8zk6on4caql.gif';
+}
+
+
+
+
+
+// ------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
 //Selection Sort
-async function SelectionSort(boxes, boxLen, speed) {
+async function SelectionSort(boxes, boxLen) {
   let i, j;  
   for(i = 0; i < boxLen ; i++){
     let min_index = i;
-    await waitTill(speed)
+    await waitTill(document.getElementById('speedLevel').value)
     for(j = i+1 ; j < boxLen; j++){
       if(!alreadyClicked){
         promptThis.innerHTML = "";
@@ -129,7 +175,7 @@ async function SelectionSort(boxes, boxLen, speed) {
       }
       boxes[min_index].style.backgroundImage = "linear-gradient(70deg, blue, cyan)";
       boxes[j].style.backgroundImage = "linear-gradient(70deg, blue, violet)";
-      await waitTill(speed)
+      await waitTill(document.getElementById('speedLevel').value)
       boxes[min_index].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)";
       boxes[j].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)";
     }
@@ -139,19 +185,36 @@ async function SelectionSort(boxes, boxLen, speed) {
   }
   solved = true;
 }
+function changeSelectionContent(){
+  sortHeading.innerText = 'Selection Sort';
+  sortDetail.innerHTML  = `In computer science, selection sort is an in-place comparison sorting algorithm. It has an O(n2) time complexity, which makes it inefficient on large lists, and generally performs worse than the similar insertion sort. Selection sort is noted for its simplicity and has performance advantages over more complicated algorithms in certain situations, particularly where auxiliary memory is limited.
+  <br/><br/>The algorithm divides the input list into two parts: a sorted sublist of items which is built up from left to right at the front (left) of the list and a sublist of the remaining unsorted items that occupy the rest of the list. Initially, the sorted sublist is empty and the unsorted sublist is the entire input list. The algorithm proceeds by finding the smallest (or largest, depending on sorting order) element in the unsorted sublist, exchanging (swapping) it with the leftmost unsorted element (putting it in sorted order), and moving the sublist boundaries one element to the right.`;
+  worstCase.innerHTML = `O(n<sup>2</sup>)`;
+  averageCase.innerHTML = `O(n<sup>2</sup>)`;
+  bestCase.innerHTML = `O(n<sup>2</sup>)`;
+  imageHandler.src = "https://upload.wikimedia.org/wikipedia/commons/9/94/Selection-Sort-Animation.gif";  
+}
+
+// ------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
 // Insertion Sort
-async function InsertionSort(boxes, boxLen, speed) {
+async function InsertionSort(boxes, boxLen) {
   let i, j;
   for(i = 1 ; i < boxLen; i++){
     j = i - 1;
     let temp = boxes[i].style.height;
-    await waitTill(speed);
+    await waitTill(document.getElementById('speedLevel').value);
+    if(!alreadyClicked){
+      promptThis.innerHTML = "";
+      solved = false;
+      return;
+    }
     while(j >= 0 && parseFloat(temp) < parseFloat(boxes[j].style.height)){
       boxes[i].style.backgroundImage = "linear-gradient(70deg, red, tomato)";
       boxes[j].style.backgroundImage = "linear-gradient(70deg, blue, cyan)";
       boxes[j+1].style.backgroundimage = "linear-gradient(70deg, blue, violet)";
       boxes[j+1].style.height = boxes[j].style.height;
-      await waitTill(speed);
+      await waitTill(document.getElementById('speedLevel').value);
       boxes[j+1].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)";
       boxes[j].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)";
       j--;
@@ -159,24 +222,35 @@ async function InsertionSort(boxes, boxLen, speed) {
     boxes[i].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)";
     boxes[j+1].style.height = temp;
   }
+  solved = true;
 }
+
+function changeInsertionContent(){
+  sortHeading.innerText = 'Insertion Sort';
+  sortDetail.innerHTML = `Insertion sort iterates, consuming one input element each repetition, and grows a sorted output list. At each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there. It repeats until no input elements remain.
+  <br/><br/>Sorting is typically done in-place, by iterating up the array, growing the sorted list behind it. At each array-position, it checks the value there against the largest value in the sorted list (which happens to be next to it, in the previous array-position checked). If larger, it leaves the element in place and moves to the next. If smaller, it finds the correct position within the sorted list, shifts all the larger values up to make a space, and inserts into that correct position.`;
+  worstCase.innerHTML = `O(n<sup>2</sup>)`;
+  averageCase.innerHTML = `O(n<sup>2</sup>)`;
+  bestCase.innerHTML = `O(n)`;
+  imageHandler.src = "https://upload.wikimedia.org/wikipedia/commons/9/9c/Insertion-sort-example.gif";
+}
+
+// ------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
 //Merge Sort
-async function MergeSort(boxes,left, right, speed, e) {
+async function MergeSort(boxes,left, right, e) {
   if(left < right){
-    await waitTill(speed);
+    await waitTill(document.getElementById('speedLevel').value);
     let midPoint = Math.floor(left + (right - left)/2);
-    await MergeSort(boxes, left, midPoint, speed, e);
-    await MergeSort(boxes, midPoint+1, right, speed, e);
-    await merge(boxes, left, midPoint, right, speed, e);
-  }
-  if(!alreadyClicked){
-    solved = false;
-    return;
+    countthis++;
+    await MergeSort(boxes, left, midPoint, e);
+    await MergeSort(boxes, midPoint+1, right, e);
+    await merge(boxes, left, midPoint, right);
   }
 
 }
 //After reaching to one box through recursion it will start merging the boxes in a sorted manner
-async function merge(boxes, left, midpoint, right, speed, e){
+async function merge(boxes, left, midpoint, right){
 
 let leftArrayLength = midpoint - left + 1; 
 let rightArrayLength = right - midpoint;
@@ -204,24 +278,45 @@ while(i < leftArrayLength && j < rightArrayLength){
   else{
     boxes[k].style.height = Right[j++];
   }
-  await waitTill(speed);
+  await waitTill(document.getElementById('speedLevel').value);
   boxes[k].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)";
   k++;
 }
+
 while(i < leftArrayLength){
   boxes[k].style.backgroundImage ="linear-gradient(70deg, blue, cyan)" ;
-  await waitTill(speed);
+  await waitTill(document.getElementById('speedLevel').value);
   boxes[k].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)";
   boxes[k++].style.height = Left[i++]; 
 }
 while(j < rightArrayLength){
   boxes[k].style.backgroundImage ="linear-gradient(70deg, blue, cyan)" ;
-  await waitTill(speed);
+  await waitTill(document.getElementById('speedLevel').value);
   boxes[k].style.backgroundImage = "linear-gradient(0deg, rgb(34, 34, 34), lightgrey)";
   boxes[k++].style.height = Right[j++];
-  
 }
+countthis--;
 }
+function changeMergeContent(){
+  sortHeading.innerText = 'Merge Sort';
+  sortDetail.innerHTML = `In computer science, merge sort (also commonly spelled as mergesort) is an efficient, general-purpose, and comparison-based sorting algorithm. Most implementations produce a stable sort, which means that the order of equal elements is the same in the input and output. Merge sort is a divide and conquer algorithm that was invented by John von Neumann in 1945.
+  <br/><br/>
+  Conceptually, a merge sort works as follows:
+  <br/>1) Divide the unsorted list into n sublists, each containing one element (a list of one element is considered sorted).
+  <br/>2) Repeatedly merge sublists to produce new sorted sublists until there is only one sublist remaining. This will be the sorted list.`;
+  worstCase.innerHTML = `O(nlog(n))`;
+  averageCase.innerHTML = `O(nlog(n))`;
+  bestCase.innerHTML = `O(nlog(n))`;
+  imageHandler.src = "https://upload.wikimedia.org/wikipedia/commons/c/cc/Merge-sort-example-300px.gif";
+}
+
+
+
+// ------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
+
+// Processing functions
+
 
 //Generate new array
 function startTheProcess(e) {
@@ -242,10 +337,10 @@ function startTheProcess(e) {
 function generateElement(nfactor) {
   let createElement = document.createElement("div");
   createElement.className = "box";
-  let randheight = Math.random() * 99 + 1;
+  let randheight = Math.random() * 99 + 2;
   let setwidth = 100 / nfactor;
   createElement.style.width = setwidth + "%";
-  createElement.style.height = randheight + "%";
+  createElement.style.height = Math.floor(randheight) + "%";
   displayScreen.appendChild(createElement);
 }
 

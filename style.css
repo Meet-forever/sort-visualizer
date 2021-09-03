@@ -119,7 +119,7 @@ form{
 }
 .written-section{
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     background-color: rgb(34, 34, 34);
     z-index: 2;
     display: flex;
@@ -128,7 +128,7 @@ form{
 }
 .written-content{
     max-width: 1000px;
-    height: 80vh;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;

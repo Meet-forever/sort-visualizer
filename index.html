@@ -16,6 +16,7 @@
     <link rel="canonical" href="https://meet-forever.github.io/sort-visualizer/" />
     <link type="text/css" rel="stylesheet" href="./style.css">
     </link>
+    <link rel="shortcut icon" type="image/png" href="./public/ascending-sort.png"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="google-site-verification" content="P8RMYSVLiCDAVG9QUbZwNSWIE2fhe4kn8k3Z3__kPnc" />
 </head>
@@ -38,7 +39,7 @@
         <div>
             <div class="mainContent">
                 <div id="sortType">
-                    <select id="currentSortType" title="Sort Type" name="Sort Type">
+                    <select onchange="changeThisWholeThing()" id="currentSortType" title="Sort Type" name="Sort Type">
                         <option selected value="Bubble Sort" name="Bubble Sort">Bubble Sort</option>
                         <option value="Selection Sort" name="Selection Sort">Selection Sort</option>
                         <option value="Insertion Sort" name="Insertion Sort">Insertion Sort</option>
@@ -47,10 +48,7 @@
                 </div>
 
                 <label for="speedLevel">Speed</label>
-                <select id="speedLevel">
-                    <option id="fast" value="fast" selected>fast</option>
-                    <option id="slow" value="slow">slow</option>
-                </select>
+                <input type="range" id="speedLevel" max="400" min="4" value="100">
 
                 <button id="start"><i class="material-icons" id='startIcon'>
                         play_arrow
@@ -68,19 +66,24 @@
                     Bubble Sort
                 </h1>
                 <div class="information-manager">
-                    <p id="paragraph-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur nulla quas quidem
-                        necessitatibus, praesentium dignissimos? Debitis nihil voluptatum eius laboriosam provident
-                        impedit corporis deserunt sint nemo architecto facere dignissimos eveniet maiores dicta, culpa
-                        ratione ex! Esse soluta nostrum vitae, sint ullam recusandae sequi? Perferendis debitis
-                        reprehenderit laboriosam deserunt quae delectus.</p>
+                    <p id="paragraph-content">Bubble sort, sometimes referred to as sinking sort, is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. The algorithm, which is a comparison sort, is named for the way smaller or larger elements "bubble" to the top of the list.
+                       <br/><br/> This simple algorithm performs poorly in real world use and is used primarily as an educational tool. More efficient algorithms such as quicksort, timsort, or merge sort are used by the sorting libraries built into popular programming languages such as Python and Java.</p>
                     <table id="complexity-table">
                         <tr>
                             <th>Cases</th>
                             <th>Complexity</th>
                         </tr>
                         <tr>
-                            <td>worst-case</td>
-                            <td>O(n<sup>2</sup>)</td>
+                            <td>Worst-case</td>
+                            <td id="worst-case">O(n<sup>2</sup>)</td>
+                        </tr>
+                        <tr>
+                            <td>Average-case</td>
+                            <td id="average-case">O(n<sup>2</sup>)</td>
+                        </tr>
+                        <tr>
+                            <td>Best-case</td>
+                            <td id="best-case">O(n)</td>
                         </tr>
                     </table>
                 </div>
