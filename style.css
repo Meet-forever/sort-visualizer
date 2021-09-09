@@ -144,6 +144,7 @@ form{
 #paragraph-content{
     max-width: 600px;
     margin: 10px;
+    font-size: 1.2rem;
     color: white;
 }
 #complexity-table{
@@ -191,5 +192,5 @@ footer{
  height: 40px;   
 }
 #byauthor{
-    margin-top: 10px;
+    margin-top: 40px;
 }
