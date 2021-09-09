@@ -10,7 +10,6 @@ let sortDetail = document.getElementById('paragraph-content');
 let worstCase = document.getElementById('worst-case');
 let bestCase = document.getElementById('best-case');
 let averageCase = document.getElementById('average-case');
-let selectedSort = document.getElementById('currentSortType')
 let imageHandler = document.getElementById('imageHandler')
 //----------------------------------Event Listners
 
@@ -26,7 +25,7 @@ window.addEventListener('load', ()=>{
 submitBtn.addEventListener("click", startTheProcess);
 
 function changeThisWholeThing(){
-  let sortCurrentValue = selectedSort.value;  
+  let sortCurrentValue = document.getElementById('currentSortType').value;  
   switch(true){
     case  sortCurrentValue === 'Bubble Sort':
       changeBubbleContent();
@@ -56,7 +55,7 @@ startBtn.addEventListener("click", async (e) => {
   TurnOn();
   let boxLen = document.getElementById("noOfBox").value;
   let boxes = document.getElementsByClassName("box");
-  let currentSortHeader = selectedSort.value;
+  let currentSortHeader = document.getElementById('currentSortType').value; 
   switch (true) {
     case currentSortHeader === "Bubble Sort":
       await BubbleSort(boxes, boxLen);
