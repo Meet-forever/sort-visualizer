@@ -5,14 +5,10 @@
 
 }
 :root{
-    --headcolor: rgb(94, 94, 94);
-    --backcolor: rgb(146, 146, 146);
-    --bodycolor: rgb(119, 119, 119);
-    --fontcolor: rgb(0, 0, 0);
-    /* --headcolor: rgb(27, 27, 27);
+    --headcolor: rgb(27, 27, 27);
     --backcolor: rgb(0, 0, 0);
     --bodycolor: rgb(34, 34, 34);
-    --fontcolor: rgb(255, 255, 255); */
+    --fontcolor: rgb(255, 255, 255);
 }
 body{
     background-color: var(--headcolor);
