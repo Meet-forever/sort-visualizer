@@ -4,12 +4,22 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 }
+:root{
+    --headcolor: rgb(94, 94, 94);
+    --backcolor: rgb(146, 146, 146);
+    --bodycolor: rgb(119, 119, 119);
+    --fontcolor: rgb(0, 0, 0);
+    /* --headcolor: rgb(27, 27, 27);
+    --backcolor: rgb(0, 0, 0);
+    --bodycolor: rgb(34, 34, 34);
+    --fontcolor: rgb(255, 255, 255); */
+}
 body{
-    background-color: rgb(40, 40, 40);
+    background-color: var(--headcolor);
 }
 .nav{
     position: fixed;
-    background-color: rgb(27, 27, 27);
+    background-color: var(--headcolor);
     height: 10vh;
     left: 0;
     right: 0;
@@ -21,14 +31,14 @@ body{
     z-index: 4;
 }
 form{
-    color: white;
+    color: var(--fontcolor);
     margin-right: 2px;
 }
 .nav h1{
-    color: white;
+    color: var(--fontcolor);
 }
 .backimg{
-    background-color: black;
+    background-color: var(--backcolor);
     height: 100vh;
 }
 
@@ -75,21 +85,13 @@ form{
 #currentSortType{
     background-color: transparent;
     border: none;
-    color: white;
+    color: var(--fontcolor);
     font-family: sans-serif;
     font-weight: 600;
     font-size: clamp(18px, 8vw, 32px)
 }
 #currentSortType:focus{
     outline: none;
-}
-.headerbtn{
-    background-color: black;
-    border: none !important;
-    color: white;
-}
-.headerbtn:hover{
-    color:rgb(40, 40, 40);
 }
 #prompt{
     position: absolute;
@@ -115,12 +117,12 @@ form{
 }
 .box{
     z-index: 2;
-    background-image: linear-gradient(0deg, rgb(34, 34, 34) , lightgrey);
+    background-image: linear-gradient(0deg, rgb(43, 43, 43), lightgrey);
 }
 .written-section{
     position: relative;
     min-height: 100vh;
-    background-color: rgb(34, 34, 34);
+    background-color: var(--bodycolor);
     z-index: 2;
     display: flex;
     justify-content: center;
@@ -129,13 +131,14 @@ form{
 .written-content{
     max-width: 1000px;
     min-height: 80vh;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 #written-heading{
-    color: white;
+    color: var(--fontcolor);
 }
 .information-manager{
     display: flex;
@@ -145,15 +148,15 @@ form{
     max-width: 600px;
     margin: 10px;
     font-size: 1.2rem;
-    color: white;
+    color: var(--fontcolor);
 }
 #complexity-table{
     max-width: 400;
     margin: 10px;
 }
 table, th, td{
-    border: 1px solid white;
-    color: white
+    border: 1px solid var(--fontcolor);
+    color: var(--fontcolor);
 }
 td{
     padding: 5px;
@@ -161,19 +164,18 @@ td{
 #imageHandler{
     margin-top: 20px;
     max-width: 300px;
-    /* background-image: url("https://res.cloudinary.com/practicaldev/image/fetch/s--C0CI1OCj--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/ubhywp9xh8zk6on4caql.gif"); */
     object-fit: cover;
 }
 footer{
     position: relative;
     min-height: 40vh;
-    background-color: rgb(19, 19, 19);
+    background-color: var(--headcolor);
     z-index: 2;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: var(--fontcolor);
 }
 #footer-wrapper{
     max-width: 1000px;

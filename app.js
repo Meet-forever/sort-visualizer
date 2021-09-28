@@ -11,6 +11,9 @@ let worstCase = document.getElementById('worst-case');
 let bestCase = document.getElementById('best-case');
 let averageCase = document.getElementById('average-case');
 let imageHandler = document.getElementById('imageHandler')
+let themeBtn = document.getElementById("theme-btn");
+let themeCheck = false;
+let root = document.documentElement;
 //----------------------------------Event Listners
 
 
@@ -23,6 +26,26 @@ window.addEventListener('load', ()=>{
 
 //Starting process will execute and it will create new boxes based on user need
 submitBtn.addEventListener("click", startTheProcess);
+
+themeBtn.addEventListener('click', (e)=>{
+  e.preventDefault();
+  if(themeCheck === false){
+    document.getElementById('theme').innerText = "light_mode";
+    root.style.setProperty('--headcolor', "rgb(94, 94, 94)");
+    root.style.setProperty('--backcolor', "rgb(146, 146, 146)");
+    root.style.setProperty('--bodycolor', "rgb(119, 119, 119)");
+    root.style.setProperty('--fontcolor', "rgb(0, 0, 0)");
+    themeCheck = true;
+  }
+  else{
+    document.getElementById('theme').innerText = "dark_mode";
+    root.style.setProperty('--headcolor', "rgb(27, 27, 27)");
+    root.style.setProperty('--backcolor', "rgb(0, 0, 0)");
+    root.style.setProperty('--bodycolor', "rgb(34, 34, 34)");
+    root.style.setProperty('--fontcolor', "rgb(255, 255, 255)");
+    themeCheck = false;
+  }
+})
 
 function changeThisWholeThing(){
   let sortCurrentValue = document.getElementById('currentSortType').value;  
