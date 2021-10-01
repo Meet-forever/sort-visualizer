@@ -31,7 +31,7 @@ themeBtn.addEventListener('click', (e)=>{
   e.preventDefault();
   if(themeCheck === false){
     document.getElementById('theme').innerText = "light_mode";
-    root.style.setProperty('--headcolor', "rgb(94, 94, 94)");
+    root.style.setProperty('--headcolor', "rgb(110, 110, 110)");
     root.style.setProperty('--backcolor', "rgb(146, 146, 146)");
     root.style.setProperty('--bodycolor', "rgb(119, 119, 119)");
     root.style.setProperty('--fontcolor', "rgb(0, 0, 0)");
